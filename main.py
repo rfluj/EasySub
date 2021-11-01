@@ -1,4 +1,5 @@
 
+# import libraries
 import requests, os;
 from bs4 import BeautifulSoup;
 
