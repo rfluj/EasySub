@@ -6,7 +6,12 @@ def querySelector(query, soup, output):
    selectors = query.split('|')
    for node in nodes:
       selector = selectors[0]
-      results = node.findAll(selector.split('.')[0], { 'class': ' '.join(selector.split('.')[1:]) })
+      if '.' in selector:
+         results = node.findAll(selector.split('.')[0], { 'class': ' '.join(selector.split('.')[1:]) })
+      elif '#' in selector:
+         results = node.findAll(selector.split('#')[0], { 'id': ' '.join(selector.split('#')[1:]) })
+      else:
+         results = node.findAll(selector)
       if len(selectors) == 1:
          output.append(results)
          return results
